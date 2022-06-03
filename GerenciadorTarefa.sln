@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GerenciadorTarefa.Model", "GerenciadorTarefa.Model\GerenciadorTarefa.Model.csproj", "{98865B29-997D-4746-AA7A-158FA853BF2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GerenciadorTarefa.Controller", "GerenciadorTarefa.Controller\GerenciadorTarefa.Controller.csproj", "{091FC02C-A03F-4B08-872D-B5BC3CED9544}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{98865B29-997D-4746-AA7A-158FA853BF2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98865B29-997D-4746-AA7A-158FA853BF2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98865B29-997D-4746-AA7A-158FA853BF2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98865B29-997D-4746-AA7A-158FA853BF2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{091FC02C-A03F-4B08-872D-B5BC3CED9544}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{091FC02C-A03F-4B08-872D-B5BC3CED9544}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{091FC02C-A03F-4B08-872D-B5BC3CED9544}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{091FC02C-A03F-4B08-872D-B5BC3CED9544}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D51C758E-191A-438C-9807-4C1517124E81}
+	EndGlobalSection
+EndGlobal
