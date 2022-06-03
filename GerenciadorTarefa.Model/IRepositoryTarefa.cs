@@ -8,14 +8,14 @@ namespace GerenciadorTarefa.Model
 {
     public interface IRepositoryTarefa
     {
-        void InserirTarefa(Tarefa t);
+        string InserirTarefa(Tarefa t);
 
         List<Tarefa> MostrarTarefas();
 
-        Tarefa MostrarTarefa(int id);
+        Tarefa MostrarTarefa(int idPesquisado);
 
-        Tarefa EditarTarefa(int id, Tarefa novaTarefa);
+        string EditarTarefa(int idEncontrado, Tarefa tarefa);
 
-        void ExcluirTarefa(int id);
+        string ExcluirTarefa(int id);
     }
 }

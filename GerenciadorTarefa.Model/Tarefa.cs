@@ -6,8 +6,7 @@ namespace GerenciadorTarefa.Model
     {
         public Tarefa()
         {
-            DataCriacao =   DateTime.Now;
-            DataEdicao = DateTime.Now;
+            DataCriacao = DateTime.Now;
             Status = false;
         }
 
