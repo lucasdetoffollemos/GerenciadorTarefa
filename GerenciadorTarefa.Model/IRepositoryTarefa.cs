@@ -14,10 +14,8 @@ namespace GerenciadorTarefa.Model
 
         Tarefa MostrarTarefa(int id);
 
-        Tarefa EditarTarefa(int id);
+        Tarefa EditarTarefa(int id, Tarefa novaTarefa);
 
         void ExcluirTarefa(int id);
-
-        bool FinalizarTarefa(int id, int status);
     }
 }
