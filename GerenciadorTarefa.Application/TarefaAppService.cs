@@ -101,8 +101,12 @@ namespace GerenciadorTarefa.Application
                 return "Id Inválido";
             }
 
-            //TODO
-            //Realizar a verificação se o o titulo já não está cadastrado.
+            bool existeTitulo = tarefaRepository.MostrarTarefas().Exists(x => x.TituloEhIgual(tarefa.Titulo) && x.Id != id);
+
+            if (existeTitulo)
+            {
+                return "Não foi possível cadastrar tarefa, titulo já existente";
+            }
 
             tarefa.AtualizarDataEdicao();
 

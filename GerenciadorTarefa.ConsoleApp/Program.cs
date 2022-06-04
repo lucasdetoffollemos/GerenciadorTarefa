@@ -11,13 +11,12 @@ namespace GerenciadorTarefa.ConsoleApp
         static void Main(string[] args)
         {
 
-
             TarefaController controller = new TarefaController();
             TarefaAppService appService = new TarefaAppService(controller);
 
             #region Inserção
             //Tarefa t = new Tarefa();
-            //t.Titulo = "Titulo sem editar";
+            //t.Titulo = "Titulo para editar";
             //t.Descricao = "Descrição velha";
 
             //string resultado = appService.InserirTarefa(t);
@@ -65,18 +64,18 @@ namespace GerenciadorTarefa.ConsoleApp
 
             //Tarefa tarefaEditada = new Tarefa();
 
-            //tarefaEditada.Titulo = "Titulo Editando";
+            //tarefaEditada.Titulo = "Titulo para editar";
             //tarefaEditada.Descricao = "Titulo Editado";
-            //tarefaEditada.Status = false;
+            //tarefaEditada.Status = true;
 
 
-            //string resultado = appService.EditarTarefa(8002, tarefaEditada);
+            //string resultado = appService.EditarTarefa(9002, tarefaEditada);
 
             //Console.WriteLine(resultado);
             #endregion
 
             #region Exclusão
-            //string resultado = appService.ExcluirTarefa(7002);
+            //string resultado = appService.ExcluirTarefa(8002);
             //Console.WriteLine(resultado);
             #endregion
 
