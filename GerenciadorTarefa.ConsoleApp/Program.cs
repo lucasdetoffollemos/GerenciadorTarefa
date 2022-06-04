@@ -15,7 +15,7 @@ namespace GerenciadorTarefa.ConsoleApp
 
             #region Inserção
             //Tarefa t = new Tarefa();
-            //t.Titulo = "Titulo velho";
+            //t.Titulo = "Titulo sem editar";
             //t.Descricao = "Descrição velha";
 
             //string resultado = controller.InserirTarefa(t);
@@ -63,25 +63,20 @@ namespace GerenciadorTarefa.ConsoleApp
 
             //Tarefa tarefaEditada = new Tarefa();
 
-            //tarefaEditada.Titulo = "Titulo Editado";
+            //tarefaEditada.Titulo = "Titulo Editando";
             //tarefaEditada.Descricao = "Titulo Editado";
-            //tarefaEditada.Status = true;
-            //tarefaEditada.DataEdicao = DateTime.Now;
-            //tarefaEditada.DataConclusao = DateTime.Now;
+            //tarefaEditada.Status = false;
 
 
-            //string resultado = controller.EditarTarefa(2002, tarefaEditada);
+            //string resultado = controller.EditarTarefa(6002, tarefaEditada);
 
             //Console.WriteLine(resultado);
             #endregion
 
             #region Exclusão
-            //string resultado = controller.ExcluirTarefa(1003);
+            //string resultado = controller.ExcluirTarefa(5003);
             //Console.WriteLine(resultado);
             #endregion
-
-
-
         }
     }
 }

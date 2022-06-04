@@ -22,7 +22,6 @@ namespace GerenciadorTarefa.Controller
 
         public string InserirTarefa(Tarefa t)
         {
-
             var validator = new TarefaValidator();
             var validRes = validator.Validate(t);
 
@@ -31,6 +30,21 @@ namespace GerenciadorTarefa.Controller
                 return validRes.Errors.FirstOrDefault().ToString();
 
             }
+
+            bool existeTitulo = MostrarTarefas().Exists(x => x.TituloEhIgual(t.Titulo));
+
+            if (existeTitulo)
+            {
+                return "Não foi possível cadastrar tarefa, titulo já existente";
+            }
+
+
+            if (!t.EhIgualDiaDeSemana())
+            {
+                return "Não é possível cadastrar tarefas em final de semana!";
+            }
+
+
             SqlConnection conexaoComBanco = AbrindoConexaoDB();
 
             SqlCommand comandoInsercao = new SqlCommand();
@@ -91,6 +105,10 @@ namespace GerenciadorTarefa.Controller
                 return resultado;
             }
 
+            tarefa.AtualizarDataEdicao();
+
+            tarefa.AtualizarDataConclusão();
+
             SqlConnection conexaoComBanco = AbrindoConexaoDB();
 
             SqlCommand comandoAtualizacao = new SqlCommand();
@@ -128,10 +146,7 @@ namespace GerenciadorTarefa.Controller
         public string ExcluirTarefa(int id)
         {
             string resultado;
-            SqlConnection conexaoComBanco = AbrindoConexaoDB();
 
-            SqlCommand comandoExclusao = new SqlCommand();
-            comandoExclusao.Connection = conexaoComBanco;
 
             var tarefaId = MostrarTarefas().Exists(x => x.Id == id);
             if (tarefaId == false)
@@ -141,6 +156,16 @@ namespace GerenciadorTarefa.Controller
             }
 
             var tarefa = MostrarTarefas().Where(x => x.Id == id).FirstOrDefault();
+
+            if(tarefa.TarefaEstaConcluida() == false)
+            {
+                return "Tarefa não pode ser excluida, pois ainda não foi concluida";
+            }
+
+            SqlConnection conexaoComBanco = AbrindoConexaoDB();
+
+            SqlCommand comandoExclusao = new SqlCommand();
+            comandoExclusao.Connection = conexaoComBanco;
 
             string sqlExclusao =
                 @"DELETE FROM TBTAREFA               
