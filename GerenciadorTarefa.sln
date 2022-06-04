@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciadorTarefa.Controlle
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciadorTarefa.ConsoleApp", "GerenciadorTarefa.ConsoleApp\GerenciadorTarefa.ConsoleApp.csproj", "{11F67331-0DD8-4FC2-894B-A445A503AB10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GerenciadorTarefa.Application", "GerenciadorTarefa.Application\GerenciadorTarefa.Application.csproj", "{1F52EDC2-BD68-4677-8E60-EDB325A60E12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciadorTarefa.Application", "GerenciadorTarefa.Application\GerenciadorTarefa.Application.csproj", "{1F52EDC2-BD68-4677-8E60-EDB325A60E12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GerenciadorTarefa.WebApi", "GerenciadorTarefa.WebApi\GerenciadorTarefa.WebApi.csproj", "{D0F97E9C-B4B3-4B05-86CB-149FE88CF507}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{1F52EDC2-BD68-4677-8E60-EDB325A60E12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F52EDC2-BD68-4677-8E60-EDB325A60E12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F52EDC2-BD68-4677-8E60-EDB325A60E12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0F97E9C-B4B3-4B05-86CB-149FE88CF507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0F97E9C-B4B3-4B05-86CB-149FE88CF507}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0F97E9C-B4B3-4B05-86CB-149FE88CF507}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0F97E9C-B4B3-4B05-86CB-149FE88CF507}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

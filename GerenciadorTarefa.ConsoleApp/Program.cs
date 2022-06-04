@@ -78,10 +78,6 @@ namespace GerenciadorTarefa.ConsoleApp
             //string resultado = appService.ExcluirTarefa(8002);
             //Console.WriteLine(resultado);
             #endregion
-
-
-
-
         }
     }
 }
