@@ -1,4 +1,5 @@
-﻿using GerenciadorTarefa.Controller;
+﻿using GerenciadorTarefa.Application;
+using GerenciadorTarefa.Controller;
 using GerenciadorTarefa.Model;
 using System;
 using System.Collections.Generic;
@@ -12,37 +13,38 @@ namespace GerenciadorTarefa.ConsoleApp
 
 
             TarefaController controller = new TarefaController();
+            TarefaAppService appService = new TarefaAppService(controller);
 
             #region Inserção
             //Tarefa t = new Tarefa();
             //t.Titulo = "Titulo sem editar";
             //t.Descricao = "Descrição velha";
 
-            //string resultado = controller.InserirTarefa(t);
+            //string resultado = appService.InserirTarefa(t);
 
             //Console.WriteLine(resultado);
             #endregion
 
             #region Mostrar tarefas
-            //List<Tarefa> tarefas = controller.MostrarTarefas();
+            List<Tarefa> tarefas = appService.MostrarTarefas();
 
-            //foreach (Tarefa tarefa in tarefas)
-            //{
-            //    Console.WriteLine("");
-            //    Console.WriteLine("Id da tarefa: " + tarefa.Id);
-            //    Console.WriteLine("Titulo da tarefa: " + tarefa.Titulo);
-            //    Console.WriteLine("Descrição da tarefa: " + tarefa.Descricao);
-            //    Console.WriteLine("Status da tarefa: " + tarefa.Status);
-            //    Console.WriteLine("Data de tarefa: " + tarefa.DataCriacao.ToString("dd/MM/yyyy"));
-            //    Console.WriteLine("Data de edição tarefa: " + tarefa.DataEdicao.ToString("dd/MM/yyyy"));
-            //    Console.WriteLine("Data de conclusão da tarefa: " + tarefa.DataConclusao.ToString("dd/MM/yyyy"));
-            //    Console.WriteLine("---------------");
-            //}
+            foreach (Tarefa tarefa in tarefas)
+            {
+                Console.WriteLine("");
+                Console.WriteLine("Id da tarefa: " + tarefa.Id);
+                Console.WriteLine("Titulo da tarefa: " + tarefa.Titulo);
+                Console.WriteLine("Descrição da tarefa: " + tarefa.Descricao);
+                Console.WriteLine("Status da tarefa: " + tarefa.Status);
+                Console.WriteLine("Data de tarefa: " + tarefa.DataCriacao.ToString("dd/MM/yyyy"));
+                Console.WriteLine("Data de edição tarefa: " + tarefa.DataEdicao.ToString("dd/MM/yyyy"));
+                Console.WriteLine("Data de conclusão da tarefa: " + tarefa.DataConclusao.ToString("dd/MM/yyyy"));
+                Console.WriteLine("---------------");
+            }
             #endregion
 
             #region Mostrar tarefa
-            //Tarefa tarefaSelecionada = controller.MostrarTarefa(13);
-            //if(tarefaSelecionada != null)
+            //Tarefa tarefaSelecionada = appService.MostrarTarefa(13);
+            //if (tarefaSelecionada != null)
             //{
             //    Console.WriteLine("");
             //    Console.WriteLine("Tarefa Selecionada");
@@ -68,15 +70,19 @@ namespace GerenciadorTarefa.ConsoleApp
             //tarefaEditada.Status = false;
 
 
-            //string resultado = controller.EditarTarefa(6002, tarefaEditada);
+            //string resultado = appService.EditarTarefa(8002, tarefaEditada);
 
             //Console.WriteLine(resultado);
             #endregion
 
             #region Exclusão
-            //string resultado = controller.ExcluirTarefa(5003);
+            //string resultado = appService.ExcluirTarefa(7002);
             //Console.WriteLine(resultado);
             #endregion
+
+
+
+
         }
     }
 }

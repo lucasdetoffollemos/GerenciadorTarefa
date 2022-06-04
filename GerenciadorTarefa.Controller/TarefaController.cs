@@ -20,38 +20,17 @@ namespace GerenciadorTarefa.Controller
         }
 
 
-        public string InserirTarefa(Tarefa t)
+        public bool InserirTarefa(Tarefa t)
         {
-            var validator = new TarefaValidator();
-            var validRes = validator.Validate(t);
-
-            if (!validRes.IsValid)
+            try
             {
-                return validRes.Errors.FirstOrDefault().ToString();
+                SqlConnection conexaoComBanco = AbrindoConexaoDB();
 
-            }
+                SqlCommand comandoInsercao = new SqlCommand();
+                comandoInsercao.Connection = conexaoComBanco;
 
-            bool existeTitulo = MostrarTarefas().Exists(x => x.TituloEhIgual(t.Titulo));
-
-            if (existeTitulo)
-            {
-                return "Não foi possível cadastrar tarefa, titulo já existente";
-            }
-
-
-            if (!t.EhIgualDiaDeSemana())
-            {
-                return "Não é possível cadastrar tarefas em final de semana!";
-            }
-
-
-            SqlConnection conexaoComBanco = AbrindoConexaoDB();
-
-            SqlCommand comandoInsercao = new SqlCommand();
-            comandoInsercao.Connection = conexaoComBanco;
-
-            string sqlInsercao =
-                @"INSERT INTO TBTAREFA
+                string sqlInsercao =
+                    @"INSERT INTO TBTAREFA
                     (
                         [TITULO],
                         [DESCRICAO],
@@ -66,56 +45,39 @@ namespace GerenciadorTarefa.Controller
                         @DATACRIACAO
                     );";
 
-            sqlInsercao +=
-                @"SELECT SCOPE_IDENTITY();";
+                sqlInsercao +=
+                    @"SELECT SCOPE_IDENTITY();";
 
-            comandoInsercao.CommandText = sqlInsercao;
+                comandoInsercao.CommandText = sqlInsercao;
 
-            comandoInsercao.Parameters.AddWithValue("TITULO", t.Titulo);
-            comandoInsercao.Parameters.AddWithValue("DESCRICAO", t.Descricao);
-            comandoInsercao.Parameters.AddWithValue("STATUS", t.Status);
-            comandoInsercao.Parameters.AddWithValue("DATACRIACAO", t.DataCriacao);
+                comandoInsercao.Parameters.AddWithValue("TITULO", t.Titulo);
+                comandoInsercao.Parameters.AddWithValue("DESCRICAO", t.Descricao);
+                comandoInsercao.Parameters.AddWithValue("STATUS", t.Status);
+                comandoInsercao.Parameters.AddWithValue("DATACRIACAO", t.DataCriacao);
 
-            object id = comandoInsercao.ExecuteScalar();
+                object id = comandoInsercao.ExecuteScalar();
 
-            t.Id = Convert.ToInt32(id);
+                t.Id = Convert.ToInt32(id);
 
-            conexaoComBanco.Close();
-
-            return "Tarefa inserida com sucesso";
+                conexaoComBanco.Close();
+            }catch (Exception)
+            {
+                return false;
+            }
+            return true;
         }
 
-        public string EditarTarefa(int idEncontrado, Tarefa tarefa)
+        public bool EditarTarefa(int idEncontrado, Tarefa tarefa)
         {
-            string resultado;
-            var validator = new TarefaValidator();
-            var validRes = validator.Validate(tarefa);
-
-            if (!validRes.IsValid)
+            try
             {
-                resultado = validRes.Errors.FirstOrDefault().ToString();
-                return resultado;
-            }
+                SqlConnection conexaoComBanco = AbrindoConexaoDB();
 
+                SqlCommand comandoAtualizacao = new SqlCommand();
+                comandoAtualizacao.Connection = conexaoComBanco;
 
-            var receitaId = MostrarTarefas().Exists(x => x.Id == idEncontrado);
-            if (receitaId == false)
-            {
-                resultado = "Id Inválido";
-                return resultado;
-            }
-
-            tarefa.AtualizarDataEdicao();
-
-            tarefa.AtualizarDataConclusão();
-
-            SqlConnection conexaoComBanco = AbrindoConexaoDB();
-
-            SqlCommand comandoAtualizacao = new SqlCommand();
-            comandoAtualizacao.Connection = conexaoComBanco;
-
-            string sqlAtualizacao =
-                @"UPDATE TBTAREFA
+                string sqlAtualizacao =
+                    @"UPDATE TBTAREFA
 	                SET	
 		                [TITULO] = @TITULO,
                         [DESCRICAO] = @DESCRICAO,
@@ -126,62 +88,103 @@ namespace GerenciadorTarefa.Controller
 	                WHERE 
 		                [ID] = @ID";
 
-            comandoAtualizacao.CommandText = sqlAtualizacao;
+                comandoAtualizacao.CommandText = sqlAtualizacao;
 
-            comandoAtualizacao.Parameters.AddWithValue("ID", idEncontrado);
-            comandoAtualizacao.Parameters.AddWithValue("TITULO", tarefa.Titulo);
-            comandoAtualizacao.Parameters.AddWithValue("DESCRICAO", tarefa.Descricao);
-            comandoAtualizacao.Parameters.AddWithValue("DATACRIACAO", tarefa.DataCriacao);
-            comandoAtualizacao.Parameters.AddWithValue("DATAEDICAO", tarefa.DataEdicao);
-            comandoAtualizacao.Parameters.AddWithValue("DATACONCLUSAO", tarefa.DataConclusao);
-            comandoAtualizacao.Parameters.AddWithValue("STATUS", tarefa.Status);
-            comandoAtualizacao.ExecuteNonQuery();
+                comandoAtualizacao.Parameters.AddWithValue("ID", idEncontrado);
+                comandoAtualizacao.Parameters.AddWithValue("TITULO", tarefa.Titulo);
+                comandoAtualizacao.Parameters.AddWithValue("DESCRICAO", tarefa.Descricao);
+                comandoAtualizacao.Parameters.AddWithValue("DATACRIACAO", tarefa.DataCriacao);
+                comandoAtualizacao.Parameters.AddWithValue("DATAEDICAO", tarefa.DataEdicao);
+                comandoAtualizacao.Parameters.AddWithValue("DATACONCLUSAO", tarefa.DataConclusao);
+                comandoAtualizacao.Parameters.AddWithValue("STATUS", tarefa.Status);
+                comandoAtualizacao.ExecuteNonQuery();
 
-            conexaoComBanco.Close();
+                conexaoComBanco.Close();
+            }
+            catch (Exception) {
+                return false;
+            }
+            
+            return true;
 
-            resultado = "Tarefa modificada com sucesso";
-            return resultado;
+            //string resultado;
+            //var validator = new TarefaValidator();
+            //var validRes = validator.Validate(tarefa);
+
+            //if (!validRes.IsValid)
+            //{
+            //    resultado = validRes.Errors.FirstOrDefault().ToString();
+            //    return resultado;
+            //}
+
+
+            //var receitaId = MostrarTarefas().Exists(x => x.Id == idEncontrado);
+            //if (receitaId == false)
+            //{
+            //    resultado = "Id Inválido";
+            //    return resultado;
+            //}
+
+            //tarefa.AtualizarDataEdicao();
+
+            //tarefa.AtualizarDataConclusão();
+
+            //resultado = "Tarefa modificada com sucesso";
+            //return resultado;
+
         }
 
-        public string ExcluirTarefa(int id)
+        public bool ExcluirTarefa(int id, Tarefa tarefa)
         {
-            string resultado;
 
 
-            var tarefaId = MostrarTarefas().Exists(x => x.Id == id);
-            if (tarefaId == false)
+            try
             {
-                resultado = "Id Inválido";
-                return resultado;
-            }
+                SqlConnection conexaoComBanco = AbrindoConexaoDB();
 
-            var tarefa = MostrarTarefas().Where(x => x.Id == id).FirstOrDefault();
+                SqlCommand comandoExclusao = new SqlCommand();
+                comandoExclusao.Connection = conexaoComBanco;
 
-            if(tarefa.TarefaEstaConcluida() == false)
-            {
-                return "Tarefa não pode ser excluida, pois ainda não foi concluida";
-            }
-
-            SqlConnection conexaoComBanco = AbrindoConexaoDB();
-
-            SqlCommand comandoExclusao = new SqlCommand();
-            comandoExclusao.Connection = conexaoComBanco;
-
-            string sqlExclusao =
-                @"DELETE FROM TBTAREFA               
+                string sqlExclusao =
+                    @"DELETE FROM TBTAREFA               
                  WHERE 
                     [ID] = @ID";
 
-            comandoExclusao.CommandText = sqlExclusao;
+                comandoExclusao.CommandText = sqlExclusao;
 
-            comandoExclusao.Parameters.AddWithValue("ID", tarefa.Id);
+                comandoExclusao.Parameters.AddWithValue("ID", tarefa.Id);
 
-            comandoExclusao.ExecuteNonQuery();
+                comandoExclusao.ExecuteNonQuery();
 
-            conexaoComBanco.Close();
+                conexaoComBanco.Close();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
 
-            resultado = $"Tarefa de Id {tarefa.Id} excluida com sucesso";
-            return resultado;
+
+            return true;
+
+            //string resultado;
+            //var tarefaId = MostrarTarefas().Exists(x => x.Id == id);
+            //if (tarefaId == false)
+            //{
+            //    resultado = "Id Inválido";
+            //    return resultado;
+            //}
+
+            //var tarefa = MostrarTarefas().Where(x => x.Id == id).FirstOrDefault();
+
+            //if(tarefa.TarefaEstaConcluida() == false)
+            //{
+            //    return "Tarefa não pode ser excluida, pois ainda não foi concluida";
+            //}
+
+
+
+            //resultado = $"Tarefa de Id {tarefa.Id} excluida com sucesso";
+            //return resultado;
         }
 
         public Tarefa MostrarTarefa(int idPesquisado)
