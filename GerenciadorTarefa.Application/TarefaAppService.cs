@@ -80,13 +80,19 @@ namespace GerenciadorTarefa.Application
                 return "Não foi possível excluir a tarefa";
             }
 
-            return $"Tarefa {tarefa.Titulo} excluida com sucesso";
+            return "Tarefa excluida com sucesso";
 
         }
 
         public string EditarTarefa(int id, Tarefa tarefa)
         {
-            
+
+            var receitaId = MostrarTarefas().Exists(x => x.Id == id);
+            if (receitaId == false)
+            {
+                return "Id Inválido";
+            }
+
             var validator = new TarefaValidator();
             var validRes = validator.Validate(tarefa);
 
@@ -95,17 +101,11 @@ namespace GerenciadorTarefa.Application
                 return validRes.Errors.FirstOrDefault().ToString();
             }
 
-            var receitaId = MostrarTarefas().Exists(x => x.Id == id);
-            if (receitaId == false)
-            {
-                return "Id Inválido";
-            }
-
             bool existeTitulo = tarefaRepository.MostrarTarefas().Exists(x => x.TituloEhIgual(tarefa.Titulo) && x.Id != id);
 
             if (existeTitulo)
             {
-                return "Não foi possível cadastrar tarefa, titulo já existente";
+                return "Não foi possível editar tarefa, titulo já existente";
             }
 
             tarefa.AtualizarDataEdicao();

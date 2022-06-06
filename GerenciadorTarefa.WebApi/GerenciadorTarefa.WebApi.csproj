@@ -5,7 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.4.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="AutoMapper.Contrib.Autofac.DependencyInjection" Version="6.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GerenciadorTarefa.Application\GerenciadorTarefa.Application.csproj" />
+    <ProjectReference Include="..\GerenciadorTarefa.Controller\GerenciadorTarefa.Controller.csproj" />
+    <ProjectReference Include="..\GerenciadorTarefa.Model\GerenciadorTarefa.Model.csproj" />
   </ItemGroup>
 
 </Project>
