@@ -6,7 +6,7 @@ namespace GerenciadorTarefa.Model
     {
         public Tarefa()
         {
-            DataCriacao = DateTime.Now.AddDays(2);
+            DataCriacao = DateTime.Now;
             Status = false;
         }
 
