@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciadorTarefa.Model", "GerenciadorTarefa.Model\GerenciadorTarefa.Model.csproj", "{98865B29-997D-4746-AA7A-158FA853BF2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciadorTarefa.Model", "src\GerenciadorTarefa.Model\GerenciadorTarefa.Model.csproj", "{98865B29-997D-4746-AA7A-158FA853BF2F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciadorTarefa.Controller", "GerenciadorTarefa.Controller\GerenciadorTarefa.Controller.csproj", "{091FC02C-A03F-4B08-872D-B5BC3CED9544}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciadorTarefa.Controller", "src\GerenciadorTarefa.Controller\GerenciadorTarefa.Controller.csproj", "{091FC02C-A03F-4B08-872D-B5BC3CED9544}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciadorTarefa.ConsoleApp", "GerenciadorTarefa.ConsoleApp\GerenciadorTarefa.ConsoleApp.csproj", "{11F67331-0DD8-4FC2-894B-A445A503AB10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciadorTarefa.ConsoleApp", "src\GerenciadorTarefa.ConsoleApp\GerenciadorTarefa.ConsoleApp.csproj", "{11F67331-0DD8-4FC2-894B-A445A503AB10}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciadorTarefa.Application", "GerenciadorTarefa.Application\GerenciadorTarefa.Application.csproj", "{1F52EDC2-BD68-4677-8E60-EDB325A60E12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciadorTarefa.Application", "src\GerenciadorTarefa.Application\GerenciadorTarefa.Application.csproj", "{1F52EDC2-BD68-4677-8E60-EDB325A60E12}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciadorTarefa.WebApi", "GerenciadorTarefa.WebApi\GerenciadorTarefa.WebApi.csproj", "{D0F97E9C-B4B3-4B05-86CB-149FE88CF507}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciadorTarefa.WebApi", "src\GerenciadorTarefa.WebApi\GerenciadorTarefa.WebApi.csproj", "{D0F97E9C-B4B3-4B05-86CB-149FE88CF507}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E9EB8084-AAC7-4AC0-A20F-34B69AF78B7C}"
 EndProject
