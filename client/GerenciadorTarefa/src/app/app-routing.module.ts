@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TarefaListarComponent } from './tarefa/listar/tarefa-listar/tarefa-listar.component';
 const routes: Routes = [
-  { path: 'tarefa/listar', component: TarefaListarComponent, pathMatch: 'full' }
+  { path: '', redirectTo: 'tarefa/listar', pathMatch: 'full' },
+  { path: 'tarefa/listar', component: TarefaListarComponent}
 
 ];
 
