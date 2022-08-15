@@ -11,7 +11,7 @@ export interface IHttpTarefaService {
 
     excluirTarefa(id: number): Observable<number>
 
-    obterTarefaPorId(tarefa : TarefaDetailsViewModel): Observable<TarefaDetailsViewModel>
+    obterTarefaPorId(idTarefa : number): Observable<TarefaDetailsViewModel>
 
     editarTarefa(tarefa: TarefaEditViewModel): Observable<TarefaEditViewModel>
 }
