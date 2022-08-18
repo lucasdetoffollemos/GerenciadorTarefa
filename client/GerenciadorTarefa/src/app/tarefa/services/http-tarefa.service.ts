@@ -12,7 +12,7 @@ import { TarefaListViewModel } from 'src/app/shared/viewModels/tarefa/tarefa-lis
 })
 export class HttpTarefaService implements IHttpTarefaService {
 
-  private urlApi = 'oi/tchau';
+  private urlApi = 'https://localhost:5001/api/tarefa';
 
   constructor(private http: HttpClient) { }
 

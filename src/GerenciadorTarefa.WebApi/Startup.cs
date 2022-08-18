@@ -42,6 +42,10 @@ namespace GerenciadorTarefa.WebApi
             {
                 options.SuppressModelStateInvalidFilter = true;
             });
+
+            services.AddCors();
+
+    
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -71,12 +75,24 @@ namespace GerenciadorTarefa.WebApi
 
             app.UseRouting();
 
+
+
+            app.UseCors(builder => builder
+                .WithOrigins("http://localhost:4200")
+                .WithMethods("*")
+                .WithHeaders("*")
+                .Build());
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+            
+
+          
         }
     }
 }

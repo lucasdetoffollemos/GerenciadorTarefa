@@ -25,5 +25,13 @@ export class TarefaListarComponent implements OnInit {
         //this.atualizarFuncionarios();
       });
   }
+
+  abreviarDescricao(descricao:string): string {
+    if(descricao.length > 10){
+      return descricao.substring(0,9).trim() + "...";
+    }
+
+    return descricao;
+  }
  
 }

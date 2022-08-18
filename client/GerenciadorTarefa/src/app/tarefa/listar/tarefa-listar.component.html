@@ -18,8 +18,10 @@
         </thead>
         <tbody>
             <tr *ngFor="let tarefa of listaTarefas">
+                <td></td>
                 <td>{{ tarefa.id }}</td>
                 <td>{{ tarefa.titulo }}</td>
+                <td>{{ abreviarDescricao(tarefa.descricao)}}</td>
                 <td>{{ tarefa.dataCriacao| date:'dd/MM/yyyy'}}</td>
                 <td>{{ tarefa.dataEdicao| date:'dd/MM/yyyy'}}</td>
                 <td>{{ tarefa.dataConclusao| date:'dd/MM/yyyy'}}</td>

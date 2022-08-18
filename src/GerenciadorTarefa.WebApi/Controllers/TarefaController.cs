@@ -2,6 +2,7 @@
 using GerenciadorTarefa.Application;
 using GerenciadorTarefa.Model;
 using GerenciadorTarefa.WebApi.ViewModels;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

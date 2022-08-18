@@ -9,6 +9,7 @@ import { MenuComponent } from './navegacao/menu/menu/menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TarefaListarComponent } from './tarefa/listar/tarefa-listar.component';
 import { HttpTarefaService } from './tarefa/services/http-tarefa.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HttpTarefaService } from './tarefa/services/http-tarefa.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [{ provide: 'IHttpTarefaServiceToken', useClass: HttpTarefaService }],
   bootstrap: [AppComponent]
