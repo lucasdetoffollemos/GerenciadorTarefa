@@ -22,7 +22,7 @@ namespace GerenciadorTarefa.Model
 
             RuleFor(x => x.Titulo).NotEmpty().WithMessage("Informe o titulo").Length(3, 50).WithMessage("O titulo deve estar entre 5 e 50 caracteres");
 
-            RuleFor(x => x.Descricao).NotEmpty().WithMessage("Informe a descrição").Length(5, 200).WithMessage("A descrição deve estar entre 10 e 200 caracteres");
+            RuleFor(x => x.Descricao).NotEmpty().WithMessage("Informe a descrição").Length(5, 200).WithMessage("A descrição deve estar entre 5 e 200 caracteres");
         }
     }
 }

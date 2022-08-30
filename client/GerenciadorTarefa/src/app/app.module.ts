@@ -10,6 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TarefaListarComponent } from './tarefa/listar/tarefa-listar.component';
 import { HttpTarefaService } from './tarefa/services/http-tarefa.service';
 import { HttpClientModule } from '@angular/common/http';
+import { TarefaCriarComponent } from './tarefa/criar/tarefa-criar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,13 +19,16 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     HeaderComponent,
     MenuComponent,
-    TarefaListarComponent
+    TarefaListarComponent,
+    TarefaCriarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule, 
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [{ provide: 'IHttpTarefaServiceToken', useClass: HttpTarefaService }],
   bootstrap: [AppComponent]

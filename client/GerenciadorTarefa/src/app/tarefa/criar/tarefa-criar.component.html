@@ -1,0 +1,26 @@
+<div class="container main-container">
+    <h4>Cadastrar Tarefa</h4>
+    <hr />
+     <form novalidate [formGroup]="cadastroForm" (ngSubmit)='adicionarTarefa()'> 
+    
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="titulo">Titulo</label>
+            <div class="col-md-10">
+                <input class="form-control" id="titulo" type="text" placeholder="Titulo (requerido)"
+                    formControlName="titulo" />
+            </div>
+            <label class="col-md-2 control-label" for="descricao">Descrição</label>
+            <div class="col-md-10">
+                <input class="form-control" id="descricao" type="text" placeholder="Descrição (requerido)"
+                    formControlName="descricao" />
+            </div>   
+        </div>
+        <br>
+        <div class="form-group">
+            <div class="col-md-4 col-md-offset-2">
+                <span><button class="btn btn-success" id="registrar" type="submit">Registrar</button></span>
+                <span><button class="btn btn-danger" id="cancelar" (click)="cancelar()">Cancelar</button></span>
+            </div>
+        </div>
+    </form>
+</div>
