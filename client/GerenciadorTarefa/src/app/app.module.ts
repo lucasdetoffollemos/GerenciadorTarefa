@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,8 @@ import { HttpTarefaService } from './tarefa/services/http-tarefa.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TarefaCriarComponent } from './tarefa/criar/tarefa-criar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastContainerComponent } from './shared/components/toast-container/toast-container.component';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     MenuComponent,
     TarefaListarComponent,
-    TarefaCriarComponent
+    TarefaCriarComponent,
+    ToastContainerComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     HttpClientModule, 
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [{ provide: 'IHttpTarefaServiceToken', useClass: HttpTarefaService }],
   bootstrap: [AppComponent]
