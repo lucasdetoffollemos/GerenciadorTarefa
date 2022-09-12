@@ -67,5 +67,20 @@ export class TarefaListarComponent implements OnInit {
     
     return data;
   }
+
+
+  //0001-01-01T00:00:00
+  //1753-01-01T00:00:00
+  verificaSeTarefaFoiConcluida(data: Date){
+    let dataEdicao = data.toString()
+    let dataMinima1 = '0001-01-01T00:00:00';
+    let dataMinima2 = '1753-01-01T00:00:00';
+
+    if(dataEdicao == dataMinima1 || dataEdicao == dataMinima2){
+      return 'Tarefa não concluída';
+    }
+    
+    return data;
+  }
  
 }

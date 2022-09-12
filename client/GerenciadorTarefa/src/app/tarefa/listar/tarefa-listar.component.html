@@ -27,9 +27,8 @@
                 <td>{{ abreviarDescricao(tarefa.descricao)}}</td>
                 <td>{{ tarefa.dataCriacao | date:'dd/MM/yyyy'}}</td>
                 <td>{{ verificaSeTarefaFoiEditada(tarefa.dataEdicao) != 'Tarefa não editada' ? (verificaSeTarefaFoiEditada(tarefa.dataEdicao) | date:'dd/MM/yyyy'): verificaSeTarefaFoiEditada(tarefa.dataEdicao) }}</td>
-                <td>{{ tarefa.dataConclusao| date:'dd/MM/yyyy'}}</td>
+                <td>{{ verificaSeTarefaFoiConcluida(tarefa.dataConclusao) != 'Tarefa não concluída' ? (verificaSeTarefaFoiConcluida(tarefa.dataConclusao) | date:'dd/MM/yyyy'): verificaSeTarefaFoiConcluida(tarefa.dataConclusao)}}</td>
                 <td>{{ setarStatus(tarefa.status)}}</td>
-                
             </tr>
         </tbody>
     </table>
@@ -39,7 +38,7 @@
             (pageChange)="atualizarTarefas()" [directionLinks]="false">
         </ngb-pagination>
 
-        <!--<ngb-pagination [collectionSize]="collectionSize" [(page)]="page" ></ngb-pagination>!-->
+        <!--<ngb-pagination [collectionSize]="collectionSize" [(page)]="page"></ngb-pagination>!-->
     </div>
 </div>
 
