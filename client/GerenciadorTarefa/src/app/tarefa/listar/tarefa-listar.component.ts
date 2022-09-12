@@ -47,5 +47,25 @@ export class TarefaListarComponent implements OnInit {
     }
     return descricao;
   }
+
+  setarStatus(status: boolean): string{
+    if(status == false){
+      return 'Em andamento';
+    }
+    return 'Concluida';
+  }
+
+  //01/01/0001
+  //0001-01-01T00:00:00
+  verificaSeTarefaFoiEditada(data: Date){
+    let dataEdicao = data.toString()
+    let dataMinima = '0001-01-01T00:00:00';
+
+    if(dataEdicao == dataMinima){
+      return 'Tarefa não editada';
+    }
+    
+    return data;
+  }
  
 }

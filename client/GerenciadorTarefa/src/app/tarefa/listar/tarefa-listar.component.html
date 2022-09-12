@@ -25,10 +25,10 @@
                 <td>{{ tarefa.id }}</td>
                 <td>{{ tarefa.titulo }}</td>
                 <td>{{ abreviarDescricao(tarefa.descricao)}}</td>
-                <td>{{ tarefa.dataCriacao| date:'dd/MM/yyyy'}}</td>
-                <td>{{ tarefa.dataEdicao| date:'dd/MM/yyyy'}}</td>
+                <td>{{ tarefa.dataCriacao | date:'dd/MM/yyyy'}}</td>
+                <td>{{ verificaSeTarefaFoiEditada(tarefa.dataEdicao) != 'Tarefa não editada' ? (verificaSeTarefaFoiEditada(tarefa.dataEdicao) | date:'dd/MM/yyyy'): verificaSeTarefaFoiEditada(tarefa.dataEdicao) }}</td>
                 <td>{{ tarefa.dataConclusao| date:'dd/MM/yyyy'}}</td>
-                <td>{{ tarefa.status}}</td>
+                <td>{{ setarStatus(tarefa.status)}}</td>
                 
             </tr>
         </tbody>
