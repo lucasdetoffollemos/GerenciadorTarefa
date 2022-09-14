@@ -81,7 +81,6 @@ namespace GerenciadorTarefa.Controller
 	                SET	
 		                [TITULO] = @TITULO,
                         [DESCRICAO] = @DESCRICAO,
-                        [DATACRIACAO] = @DATACRIACAO,
                         [DATAEDICAO] = @DATAEDICAO,
                         [DATACONCLUSAO] = @DATACONCLUSAO,
                         [STATUS] = @STATUS
@@ -93,7 +92,6 @@ namespace GerenciadorTarefa.Controller
                 comandoAtualizacao.Parameters.AddWithValue("ID", idEncontrado);
                 comandoAtualizacao.Parameters.AddWithValue("TITULO", tarefa.Titulo);
                 comandoAtualizacao.Parameters.AddWithValue("DESCRICAO", tarefa.Descricao);
-                comandoAtualizacao.Parameters.AddWithValue("DATACRIACAO", tarefa.DataCriacao);
                 comandoAtualizacao.Parameters.AddWithValue("DATAEDICAO", tarefa.DataEdicao);
                 comandoAtualizacao.Parameters.AddWithValue("DATACONCLUSAO", tarefa.DataConclusao);
                 comandoAtualizacao.Parameters.AddWithValue("STATUS", tarefa.Status);
@@ -240,7 +238,7 @@ namespace GerenciadorTarefa.Controller
                 dataConclusao = Convert.ToDateTime(dataConclusaoParam);
 
 
-            Tarefa tarefa = new Tarefa();
+            Tarefa tarefa = new Tarefa(false);
             tarefa.Id = id;
             tarefa.Titulo = titulo;
             tarefa.Descricao = descricao;
@@ -300,7 +298,7 @@ namespace GerenciadorTarefa.Controller
 
 
 
-                Tarefa tarefa = new Tarefa();
+                Tarefa tarefa = new Tarefa(false);
 
                 tarefa.Id = id;
                 tarefa.Titulo = titulo;

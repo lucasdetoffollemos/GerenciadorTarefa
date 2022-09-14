@@ -4,10 +4,14 @@ namespace GerenciadorTarefa.Model
 {
     public class Tarefa
     {
-        public Tarefa()
+        public Tarefa(bool tarefaFoiCriada)
         {
-            DataCriacao = DateTime.Now.AddDays(1);
-            Status = false;
+            if(tarefaFoiCriada)
+            {
+                DataCriacao = DateTime.Now;
+                Status = false;
+            }
+            
         }
 
         public int Id { get; set; }

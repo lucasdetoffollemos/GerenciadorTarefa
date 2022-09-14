@@ -12,10 +12,10 @@ namespace GerenciadorTarefa.WebApi.Config.AutoMapperConfig
             CreateMap<Tarefa, TarefaListViewModel>();
 
             CreateMap<Tarefa, TarefaDetailViewModel>();
+            CreateMap<Tarefa, TarefaDetailViewModel>();
 
-            CreateMap<TarefaCreateViewModel, Tarefa>();
-
-            CreateMap<TarefaEditViewModel, Tarefa>();
+            CreateMap<TarefaCreateViewModel, Tarefa>().ForCtorParam("tarefaFoiCriada", opt => opt.MapFrom(src => true));
+            CreateMap<TarefaEditViewModel, Tarefa>().ForCtorParam("tarefaFoiCriada", opt => opt.MapFrom(src => false)); 
         }
         
 
