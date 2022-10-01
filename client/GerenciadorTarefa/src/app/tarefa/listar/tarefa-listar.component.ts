@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IHttpTarefaService } from 'src/app/shared/interfaces/ihttp-tarefa-service';
+import { ToastService } from 'src/app/shared/services/toast.service';
 import { TarefaListViewModel } from 'src/app/shared/viewModels/tarefa/tarefa-list-view-model';
 
 @Component({
@@ -15,8 +17,9 @@ export class TarefaListarComponent implements OnInit {
   page = 1;
   pageSize = 5;
   collectionSize = 0;
+  tarefaSelecionada: any;
 
-  constructor(private router: Router, @Inject('IHttpTarefaServiceToken') private servicoTarefa: IHttpTarefaService) { }
+  constructor(private router: Router, @Inject('IHttpTarefaServiceToken') private servicoTarefa: IHttpTarefaService,  private servicoModal: NgbModal, private toastService: ToastService) { }
  
   ngOnInit(): void {
     this.obterTarefas();
@@ -81,6 +84,34 @@ export class TarefaListarComponent implements OnInit {
     }
     
     return data;
+  }
+
+  abrirConfirmacao(modal: any) {
+    this.servicoModal.open(modal).result.then((resultado) => {
+      if (resultado == 'Excluir') {
+        this.servicoTarefa.excluirTarefa(this.tarefaSelecionada)
+        .subscribe(() =>{
+            this.toastService.show('Tarefa removida com sucesso', {classname: 'bg-success text-light', delay: 5000});
+            setTimeout(()=> {
+              //passando uma url diferente da que eu vou navegar
+              this.router.navigateByUrl('tarefa/criar', { skipLocationChange: true }).then(() => {
+                //aqui será a url onde eu vou irs
+                this.router.navigate(['tarefa/listar']);
+              })
+          }, 2000)
+
+        },
+        erro => {
+          let mensagemErro = '';
+          for(let nomeErro in erro.error.errors){
+            mensagemErro += erro.error.errors[nomeErro];
+          }
+          console.log(mensagemErro)
+          this.toastService.show('Erro ao remover tarefa. '+ mensagemErro , {classname: 'bg-danger text-light', delay: 5000});
+        }
+        );
+      }
+      }).catch(erro => erro);
   }
  
 }

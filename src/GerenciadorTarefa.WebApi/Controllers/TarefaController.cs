@@ -97,11 +97,13 @@ namespace GerenciadorTarefa.WebApi.Controllers
 
             if (delecaoRealizada != "Tarefa excluida com sucesso")
             {
-                return BadRequest(new
+               return BadRequest(new
                 {
                     success = false,
                     errors = delecaoRealizada
                 });
+
+                
             }
 
             return Ok(id);

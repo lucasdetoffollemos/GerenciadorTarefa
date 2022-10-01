@@ -34,7 +34,7 @@ export class TarefaCriarComponent implements OnInit {
             //console.log('Tarefa adicionada com sucesso', tarefa.titulo, tarefa.descricao)
           setTimeout(() => {
             this.router.navigate(['tarefa/listar']);
-          }, 5000);
+          }, 2000);
         },
         erro => {
           let mensagemErro = '';

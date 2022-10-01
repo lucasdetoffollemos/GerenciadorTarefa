@@ -3,6 +3,8 @@
     <hr />
     <div style="float: right;">
         <button class="btn btn-dark" [routerLink]="['/tarefa/criar']">Cadastrar</button>
+        <button class="btn btn-dark" (click)="abrirConfirmacao(modalExclusao)"
+        [disabled]="!tarefaSelecionada">Excluir</button>
     </div>
     <br>
     <br>
@@ -21,7 +23,11 @@
         </thead>
         <tbody>
             <tr *ngFor="let tarefa of listaTarefas">
-                <td></td>
+                <td>
+                    <div class="custom-control">
+                    <input type="radio" name="flexRadioDefault" class="custom-control-input" id="customRadio"
+                        value="{{ tarefa.id }}" [(ngModel)]="tarefaSelecionada">
+                </div></td>
                 <td>{{ tarefa.id }}</td>
                 <td>{{ tarefa.titulo }}</td>
                 <td>{{ abreviarDescricao(tarefa.descricao)}}</td>
@@ -41,4 +47,19 @@
         <!--<ngb-pagination [collectionSize]="collectionSize" [(page)]="page"></ngb-pagination>!-->
     </div>
 </div>
+
+<ng-template #modalExclusao let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Excluir Tarefa</h4>
+    </div>
+    <div class="modal-body">
+        Deseja realmente excluir essa Tarefa?
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="modal.close('Excluir')">Excluir</button>
+        <button type="button" class="btn btn-secondary" (click)="modal.close('Cancelar')">Cancelar</button>
+    </div>
+</ng-template>
+
+<app-toasts aria-live="polite" aria-atomic="true"></app-toasts> 
 
