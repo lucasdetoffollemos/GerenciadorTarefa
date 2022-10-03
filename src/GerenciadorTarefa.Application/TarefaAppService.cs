@@ -33,10 +33,10 @@ namespace GerenciadorTarefa.Application
             }
 
 
-            /*if (!t.EhIgualDiaDeSemana())
+            if (!t.EhIgualDiaDeSemana())
             {
                 return "Não é possível cadastrar tarefas em final de semana!";
-            }*/
+            }
 
             var tarefaInserida = tarefaRepository.InserirTarefa(t);
 

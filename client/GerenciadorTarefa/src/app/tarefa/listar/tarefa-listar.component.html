@@ -3,6 +3,10 @@
     <hr />
     <div style="float: right;">
         <button class="btn btn-dark" [routerLink]="['/tarefa/criar']">Cadastrar</button>
+        <button class="btn btn-dark" [routerLink]="['/tarefa/editar', tarefaSelecionada]"
+        [disabled]="!tarefaSelecionada">Editar</button>
+        <button class="btn btn-dark" [routerLink]="['/tarefa/detalhes', tarefaSelecionada]"
+        [disabled]="!tarefaSelecionada">Editar</button>
         <button class="btn btn-dark" (click)="abrirConfirmacao(modalExclusao)"
         [disabled]="!tarefaSelecionada">Excluir</button>
     </div>

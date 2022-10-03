@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TarefaCriarComponent } from './tarefa/criar/tarefa-criar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastContainerComponent } from './shared/components/toast-container/toast-container.component';
+import { EditarComponent } from './tarefa/editar/tarefa-editar.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ToastContainerComponent } from './shared/components/toast-container/toa
     MenuComponent,
     TarefaListarComponent,
     TarefaCriarComponent,
-    ToastContainerComponent
+    ToastContainerComponent,
+    EditarComponent
   ],
   imports: [
     BrowserModule,
