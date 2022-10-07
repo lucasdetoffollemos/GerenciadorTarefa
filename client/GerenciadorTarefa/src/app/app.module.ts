@@ -15,6 +15,7 @@ import { TarefaCriarComponent } from './tarefa/criar/tarefa-criar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastContainerComponent } from './shared/components/toast-container/toast-container.component';
 import { EditarComponent } from './tarefa/editar/tarefa-editar.component';
+import { TarefaDetalhesComponent } from './tarefa/detalhes/tarefa-detalhes.component';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { EditarComponent } from './tarefa/editar/tarefa-editar.component';
     TarefaListarComponent,
     TarefaCriarComponent,
     ToastContainerComponent,
-    EditarComponent
+    TarefaDetalhesComponent,
   ],
   imports: [
     BrowserModule,
