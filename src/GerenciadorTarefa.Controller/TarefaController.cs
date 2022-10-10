@@ -206,6 +206,7 @@ namespace GerenciadorTarefa.Controller
                         [ID], 
                         [TITULO],
                         [DESCRICAO],
+                        [DATACRIACAO],
                         [DATAEDICAO],
                         [DATACONCLUSAO],
                         [STATUS]
@@ -227,6 +228,11 @@ namespace GerenciadorTarefa.Controller
             string titulo = Convert.ToString(leitorTarefas["TITULO"]);
             bool status = Convert.ToBoolean(leitorTarefas["STATUS"]);
 
+            var dataCriacaoParam = leitorTarefas["DATACRIACAO"];
+            DateTime dataCriacao = DateTime.MinValue;
+            if (!(dataCriacaoParam is DBNull))
+                dataCriacao = Convert.ToDateTime(dataCriacaoParam);
+
             var dataEdicaoParam = leitorTarefas["DATAEDICAO"];
             DateTime dataEdicao = DateTime.MinValue;
             if (!(dataEdicaoParam is DBNull))
@@ -243,6 +249,7 @@ namespace GerenciadorTarefa.Controller
             tarefa.Titulo = titulo;
             tarefa.Descricao = descricao;
             tarefa.Status = status;
+            tarefa.DataCriacao = dataCriacao;
             tarefa.DataEdicao = dataEdicao;
             tarefa.DataConclusao = dataConclusao;
 

@@ -1,3 +1,4 @@
+import { DatePipe, formatDate } from '@angular/common';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,8 +8,7 @@ import { TarefaDetailsViewModel } from 'src/app/shared/viewModels/tarefa/tarefa-
 
 @Component({
   selector: 'app-tarefa-detalhes',
-  templateUrl: './tarefa-detalhes.component.html',
-  styleUrls: ['./tarefa-detalhes.component.css']
+  templateUrl: './tarefa-detalhes.component.html'
 })
 
 
@@ -16,7 +16,9 @@ export class TarefaDetalhesComponent implements OnInit {
 
   sub: any;
   id: any;
-  funcionario: TarefaDetailsViewModel;
+  inputTypeDataEdicao:any;
+  inputTypeDataConclusao:any;
+  tarefa: TarefaDetailsViewModel;
   cadastroForm: FormGroup;
 
 
@@ -38,12 +40,12 @@ export class TarefaDetalhesComponent implements OnInit {
 
     this.cadastroForm = new FormGroup({
       id: new FormControl(''),
-      //titulo: new FormControl(''),
-      //descricao: new FormControl(''),
-      //dataCriacao: new FormControl(''),
-      //dataEdicao: new FormControl(''),
-      //dataConclusao: new FormControl(''),
-      //status: new FormControl('')
+      titulo: new FormControl(''),
+      descricao: new FormControl(''),
+      dataCriacao: new FormControl(''),
+      dataEdicao: new FormControl(''),
+      dataConclusao: new FormControl(''),
+      status: new FormControl('')
     });
 
     this.carregarTarefa();
@@ -57,7 +59,6 @@ export class TarefaDetalhesComponent implements OnInit {
   }
 
   carregarFormulario(tarefa: TarefaDetailsViewModel) {
-
      //public int Id { get; set; }
 //public string Titulo { get; set; }
 //public string Descricao { get; set; }
@@ -67,17 +68,56 @@ export class TarefaDetalhesComponent implements OnInit {
 //public bool Status { get; set; }
     this.cadastroForm = new FormGroup({
       id: new FormControl(tarefa.id),
-      //titulo: new FormControl(tarefa.titulo),
-      //descricao: new FormControl(tarefa.descricao),
-      //dataCriacao:new FormControl(tarefa.dataCriacao),
-      //dataEdicao: new FormControl(tarefa.dataEdicao),
-      //dataConclusao: new FormControl(tarefa.dataConclusao),
-      //status: new FormControl(tarefa.status)
+      titulo: new FormControl(tarefa.titulo),
+      descricao: new FormControl(tarefa.descricao),
+      dataCriacao: new FormControl(formatDate(tarefa.dataCriacao,'yyyy-MM-dd','en')),
+      dataEdicao: new FormControl(this.verificaSeTarefaFoiEditada(formatDate(tarefa.dataEdicao,'yyyy-MM-dd', 'en'))),
+      dataConclusao: new FormControl(this.verificaSeTarefaFoiConcluida(formatDate(tarefa.dataConclusao,'yyyy-MM-dd','en'))),
+      status: new FormControl(this.setarStatus(tarefa.status))
     });
+
+    this.tarefa = tarefa;
+
+    
   }
 
   voltar(): void {
     this.router.navigate(['tarefa/listar']);
   }
+
+  setarStatus(status: boolean): string{
+    if(status == false){
+      return 'Em andamento';
+    }
+    return 'Concluida';
+  }
+
+  verificaSeTarefaFoiEditada(data: string){
+    let dataEdicao = data.toString()
+    let dataMinima = '0001-01-01';
+    this.inputTypeDataEdicao = 'date'
+    if(dataEdicao == dataMinima){
+      this.inputTypeDataEdicao = 'text'
+      return 'Tarefa não editada';
+    }
+    
+    return data;
+  }
+
+  verificaSeTarefaFoiConcluida(data: string){
+    let dataEdicao = data.toString()
+    let dataMinima1 = '0001-01-01';
+    let dataMinima2 = '1753-01-01';
+    this.inputTypeDataConclusao = 'date'
+    if(dataEdicao == dataMinima1 || dataEdicao == dataMinima2){
+      this.inputTypeDataConclusao = 'text'
+      return 'Tarefa não concluída';
+    }
+    
+    return data;
+  }
+
+
+
 
 }

@@ -1,6 +1,6 @@
 
 <div class="container main-container">
-    <h4>Cadastrar Tarefa</h4>
+    <h4>Detalhes da Tarefa {{tarefa.titulo}}</h4>
     <hr />
      <form novalidate [formGroup]="cadastroForm"> 
         <!--//public int Id { get; set; }
@@ -13,7 +13,31 @@
         <div class="form-group">
             <label class="col-md-2 control-label" for="id">Id</label>
             <div class="col-md-10">
-                <input class="form-control" [readonly]="true" id="id" type="text" formControlName="id" />
+                <input class="form-control no-selection" [readonly]="true" id="id" type="text" formControlName="id" />
+            </div>
+            <label class="col-md-2 control-label" for="titulo">Titulo</label>
+            <div class="col-md-10">
+                <input class="form-control no-selection" [readonly]="true" id="titulo" type="text" formControlName="titulo" />
+            </div>
+            <label class="col-md-2 control-label" for="descricao">Descrição</label>
+            <div class="col-md-10">
+                <input class="form-control no-selection" [readonly]="true" id="descricao" type="text" formControlName="descricao" />
+            </div>
+            <label class="col-md-2 control-label" for="dataCriacao">Data Criação</label>
+            <div class="col-md-10">
+                <input class="form-control no-selection" [readonly]="true" id="dataCriacao" type="date" formControlName="dataCriacao" />
+            </div>
+            <label class="col-md-2 control-label" for="dataEdicao">Data Edição</label>
+            <div class="col-md-10">
+                <input class="form-control no-selection" [readonly]="true" id="dataEdicao" type="{{inputTypeDataEdicao}}" formControlName="dataEdicao" />
+            </div>
+            <label class="col-md-2 control-label" for="dataConclusaoData">Data Conclusão</label>
+            <div class="col-md-10">
+                <input class="form-control no-selection" [readonly]="true" id="dataConclusaoData" type="{{inputTypeDataConclusao}}" formControlName="dataConclusao" />
+            </div>
+            <label class="col-md-2 control-label" for="status">Status</label>
+            <div class="col-md-10">
+                <input class="form-control no-selection" [readonly]="true" id="status" type="text" formControlName="status" />
             </div>
         </div>
         <br>

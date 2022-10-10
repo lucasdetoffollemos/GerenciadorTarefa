@@ -103,3 +103,6 @@
     font-style: italic;
     font-size: small;
   }
+  .no-selection{
+    pointer-events: none;
+  }
