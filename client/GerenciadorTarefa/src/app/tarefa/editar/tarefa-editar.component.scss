@@ -1,0 +1,47 @@
+.toggle-switch {
+    height: 40px;
+    width: 75px;
+    display: inline-block;
+    position: relative;
+    input {
+      display: none;
+      &:checked + .slider {
+        background-color: blue;
+      }
+      &:checked + .slider::after {
+        -webkit-transform: translateX(32px);
+        -ms-transform: translateX(32px);
+        transform: translateX(32px);
+      }
+    }
+    .slider {
+      border-radius: 28px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background-color: grey;
+      transition: 1s;
+      &::after {
+        position: absolute;
+        content: '';
+        height: 32px;
+        width: 32px;
+        background-color: white;
+        left: 4px;
+        bottom: 4px;
+        transition: 2s;
+        border-radius: 35px;
+      }
+    }
+  }
+
+.container2 {
+    display: flex;
+}
+
+.status{
+    margin-left: 15px;
+    margin-top: 5px;
+}

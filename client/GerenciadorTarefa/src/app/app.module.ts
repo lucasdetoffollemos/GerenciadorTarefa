@@ -14,7 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TarefaCriarComponent } from './tarefa/criar/tarefa-criar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastContainerComponent } from './shared/components/toast-container/toast-container.component';
-import { EditarComponent } from './tarefa/editar/tarefa-editar.component';
+import { TarefaEditarComponent } from './tarefa/editar/tarefa-editar.component';
 import { TarefaDetalhesComponent } from './tarefa/detalhes/tarefa-detalhes.component';
 
 
@@ -28,6 +28,7 @@ import { TarefaDetalhesComponent } from './tarefa/detalhes/tarefa-detalhes.compo
     TarefaCriarComponent,
     ToastContainerComponent,
     TarefaDetalhesComponent,
+    TarefaEditarComponent
   ],
   imports: [
     BrowserModule,
