@@ -41,7 +41,7 @@ export class TarefaCriarComponent implements OnInit {
           for(let nomeErro in erro.error.errors){
             mensagemErro += erro.error.errors[nomeErro];
           }
-          this.toastService.show('Erro ao adicionario funcionario: ' + mensagemErro,
+          this.toastService.show('Erro ao adicionar tarefa: ' + mensagemErro,
             { classname: 'bg-danger text-light', delay: 5000 });
         });
   }

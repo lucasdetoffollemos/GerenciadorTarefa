@@ -32,7 +32,7 @@ export class HttpTarefaService implements IHttpTarefaService {
     return this.http.get<TarefaDetailsViewModel>(this.urlApi+"/"+tarefaId);
   }
 
-  editarTarefa(tarefa: TarefaEditViewModel): Observable<TarefaEditViewModel> {
+  editarTarefa(tarefa: TarefaEditViewModel): Observable<TarefaEditViewModel> {    
     return this.http.put<TarefaEditViewModel>(this.urlApi, tarefa);
   }
 }

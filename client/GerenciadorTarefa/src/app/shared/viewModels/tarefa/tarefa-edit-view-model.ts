@@ -1,4 +1,5 @@
 export class TarefaEditViewModel {
+    id:number;
     titulo:string;
     descricao:string;
     status:boolean;

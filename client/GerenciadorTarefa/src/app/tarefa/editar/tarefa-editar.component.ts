@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IHttpTarefaService } from 'src/app/shared/interfaces/ihttp-tarefa-service';
 import { ToastService } from 'src/app/shared/services/toast.service';
+import { TarefaDetailsViewModel } from 'src/app/shared/viewModels/tarefa/tarefa-details-view-model';
 import { TarefaEditViewModel } from 'src/app/shared/viewModels/tarefa/tarefa-edit-view-model';
 
 @Component({
@@ -18,9 +19,10 @@ export class TarefaEditarComponent implements OnInit {
   id: any;
   inputTypeDataEdicao:any;
   inputTypeDataConclusao:any;
-  tarefa: TarefaEditViewModel;
+  tarefa: TarefaDetailsViewModel;
+  tarefaEdit: TarefaEditViewModel;
   cadastroForm: FormGroup;
-  status: string;
+
 
 
 
@@ -50,28 +52,68 @@ export class TarefaEditarComponent implements OnInit {
 
   carregarTarefa() {
     this.servicoTarefa.obterTarefaPorId(this.id)
-      .subscribe((tarefa: TarefaEditViewModel) => {
+      .subscribe((tarefa: TarefaDetailsViewModel) => {
         this.carregarFormulario(tarefa);
       });
   }
 
-  carregarFormulario(tarefa: TarefaEditViewModel) {
+  carregarFormulario(tarefa: TarefaDetailsViewModel) {
     this.cadastroForm = new FormGroup({
       titulo: new FormControl(tarefa.titulo),
       descricao: new FormControl(tarefa.descricao),
-      status: new FormControl(this.setarStatus(tarefa.status))
+      status: new FormControl(this.carregarStatus(tarefa.status))
     });
 
+  
     this.tarefa = tarefa;  
   }
 
-  setarStatus(status: boolean): string{
-    if(status == false){
-      this.status = 'Em andamento';
-      return this.status;
+  carregarStatus(status: boolean){
+    let switchElement = document.getElementById('switch') as HTMLInputElement;
+    if(status){
+      switchElement.checked = true;
     }
-    this.status = 'Concluida'
-    return this.status;
+    else{
+      switchElement.checked = false;
+    }
+    
+  }
+
+  setarStatus(): boolean{
+    let switchElement = document.getElementById('switch') as HTMLInputElement;
+    if(switchElement.checked){
+      return true;
+    }
+
+    return false;
+  }
+
+
+  atualizarTarefa() {
+    
+    if(this.cadastroForm.valid){
+
+      this.tarefaEdit = Object.assign({}, this.tarefa, this.cadastroForm.value);
+      this.tarefaEdit.id = this.id;
+      this.tarefaEdit.status = this.setarStatus();
+      this.servicoTarefa.editarTarefa(this.tarefaEdit)
+      .subscribe(
+        tarefa => {
+          this.toastService.show('Funcionario ' + tarefa.titulo + ' editada com sucesso!',
+            { classname: 'bg-success text-light', delay: 3000 });
+          setTimeout(() => {
+            this.router.navigate(['tarefa/listar']);
+          }, 3000);
+        },
+        erro => {
+          for(let nomeErro in erro.error.errors){
+            const mensagemErro = erro.error.errors[nomeErro];
+            this.toastService.show('Erro ao editar tarefa: ' + mensagemErro,
+            { classname: 'bg-danger text-light', delay: 5000 });
+          }
+        });
+    }
+    
   }
 
   cancelar(): void{

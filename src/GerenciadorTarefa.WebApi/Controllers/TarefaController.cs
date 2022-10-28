@@ -70,12 +70,12 @@ namespace GerenciadorTarefa.WebApi.Controllers
         }
 
         // PUT api/<TarefaController>/id
-        [HttpPut("{id}")]
-        public ActionResult<TarefaEditViewModel> Edit(int id, TarefaEditViewModel viewModel)
+        [HttpPut]
+        public ActionResult<TarefaEditViewModel> Edit(TarefaEditViewModel viewModel)
         {
             var registro = mapper.Map<Tarefa>(viewModel);
 
-            string edicaoRealizada = appService.EditarTarefa(id, registro);
+            string edicaoRealizada = appService.EditarTarefa(registro.Id, registro);
 
             if (edicaoRealizada != "Tarefa editada com sucesso")
             {
